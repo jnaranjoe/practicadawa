@@ -1,0 +1,13 @@
+Flask
+Flask-Cors
+Flask-RESTful
+requests
+urllib3
+marshmallow
+flask-swagger-ui
+Flask-JWT-Extended
+Werkzeug
+psycopg2
+setuptools
+pyjwt
+pytz

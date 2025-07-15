@@ -13,7 +13,7 @@ class LoginComponent:
             result = False
             data = None
             message = None
-            sql = "SELECT count(*) as valor FROM dawa.tb_user WHERE user_login = %s AND user_password = %s AND user_state = true"
+            sql = "SELECT count(*) as valor FROM dawa.tb_user WHERE user_login = %s AND user_password = MD5(%s) AND user_state = true"
             record = (p_user, p_clave)
 
             resul_login = DataBaseHandle.getRecords(sql,1, record)
