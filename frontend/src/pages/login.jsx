@@ -1,5 +1,5 @@
-import axios from axios
-import React from "react"
+import axios from 'axios'
+import React from 'react'
 import {
     Box,
     Paper
@@ -8,8 +8,17 @@ import {
 
 export default function login(){
     return(
-        <Box>
-            <Paper elevation={3}>
+        <Box sx={{
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'center',
+            alignItems:'center',
+            alignContent:'center',
+            // minWidth:'100hw',
+            minHeight:'100hv',
+            width:'100%'
+        }}>
+            <Paper elevation={3} sx={{padding:5}}>
                 Iniciar Sesion
             </Paper>
         </Box>
