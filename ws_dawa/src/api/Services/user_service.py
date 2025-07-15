@@ -10,8 +10,17 @@ class UserService(Resource):
     def get():
         try:
             HandleLogs.write_log("Ejecutando servicio de Listar Usuario")
-            #Validar que el token sea correcto
-            token = request.headers['tokenapp']
+            # Validar que el token sea correcto
+            auth_header = request.headers.get('Authorization')
+            if not auth_header:
+                return response_unauthorize()
+
+            parts = auth_header.split()
+            if parts[0].lower() != 'bearer' or len(parts) == 1 or len(parts) > 2:
+                return response_unauthorize()
+
+            token = parts[1]
+
             if not JwtComponent.token_validate(token):
                 return response_unauthorize()
 
