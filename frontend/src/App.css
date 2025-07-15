@@ -1,8 +1,22 @@
+/* Restablece márgenes y paddings por defecto para todos los elementos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que padding y border se incluyan en el ancho/alto total */
+}
+
+/* Asegura que html y body ocupen el 100% de la altura y ancho del viewport */
+html, body {
+  height: 100vh; /* Ocupa el 100% de la altura de su padre (viewport en este caso) */
+  width: 100vw;  /* Ocupa el 100% del ancho de su padre */
+  overflow: hidden; /* Evita barras de desplazamiento si el contenido no las requiere */
+}
+
+/* El elemento root donde se monta tu aplicación React también debe ocupar toda la altura */
+/* Por defecto en proyectos Vite/React, suele ser un div con id="root" */
 #root {
-  /* max-width: 1280px; */
-  /* min-height: 100vh;
+  height: 100%;
   width: 100%;
-  margin: 0 auto;
-  padding: 2rem; */
-  /* text-align: center; */
+  /* display: flex; */
+  /* flex-direction: column; */
 }
