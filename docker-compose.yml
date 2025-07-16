@@ -4,8 +4,8 @@ services:
       context: ./ws_dawa
       dockerfile: dockerfile
     image: service-dawa-image
-    # volumes:
-    #   - ./ws_dawa/:/app
+    volumes:
+      - ./ws_dawa/:/app
     ports:
       - "1100:1008"
     networks:
@@ -71,16 +71,28 @@ services:
   frontend:
     build: 
       context: ./frontend
-      dockerfile: dockerfile
+      dockerfile: dockerfile.desarrollo
     ports:
-      - "5173:80"  # Puerto de Vite
-    # volumes:
-    #   - ./frontend:/app
-    #   - /app/node_modules
+      - "5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     networks:
       - app-network
     depends_on:
       - servicedawa
+  
+  nginx: # Servicio Nginx que actuará como proxy inverso
+    image: nginx:alpine
+    ports:
+      - "80:80" # Expone el puerto 80 de Nginx a tu máquina local (accederás a http://localhost:80)
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro # Monta tu configuración de Nginx para desarrollo
+    networks:
+      - app-network
+    depends_on:
+      - frontend # Nginx depende del frontend-dev para las solicitudes a '/'
+      - servicedawa  # Nginx depende del backend para las solicitudes a /api/servicedawa/
 
 networks:
   app-network:

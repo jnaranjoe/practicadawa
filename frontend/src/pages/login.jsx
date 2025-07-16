@@ -37,7 +37,7 @@ export default function login(){
             if (response.data) {
                 const token = response.data.data; // Ajusta esto según la estructura real de tu respuesta de token
                 localStorage.setItem('token', token);
-                navigate('/dashboard'); // Redirige a una página protegida
+                navigate('/system/usuarios'); // Redirige a una página protegida
             } else {
                 setError(response.data.message || 'Error al iniciar sesión');
             }
